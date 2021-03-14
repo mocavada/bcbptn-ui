@@ -13,7 +13,8 @@ import {
   EventListResolver
 } from './events/index'
 import { EventsAppComponent } from './events-app.component'
-import { NavBarComponent } from './nav/nav-bar.component'
+import { NavBarComponent } from './ui-components/nav-bar.component'
+import { CarouselComponent } from './ui-components/carousel.component'
 import { ToastrService } from './common/toastr.service'
 import { Error404Component } from './errors/404.component';
 
@@ -31,6 +32,7 @@ import { appRoutes } from './app-routing.module'
     EventThumbnailComponent,
     EventDetailsComponent,
     NavBarComponent,
+    CarouselComponent,
     CreateEventComponent,
     Error404Component
   ],
