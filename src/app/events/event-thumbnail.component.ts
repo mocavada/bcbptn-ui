@@ -4,6 +4,7 @@ import { Component, Input } from '@angular/core'
   selector: 'event-thumbnail',
   template: `
     <div [routerLink]="['/events', event.id]" class="well hoverwell thumbnail">
+      <img [src]="event?.imageUrl" [alt]="event?.name" class="event-image">
       <h2>{{event?.name}}</h2>
       <div>Date: {{event?.date}}</div>
       <div [ngStyle]="getStartTimeStyle()" [ngSwitch]="event?.time">Time: {{event?.time}}
@@ -22,9 +23,10 @@ import { Component, Input } from '@angular/core'
     </div>
   `,
   styles: [`
-    .thumbnail { min-height: 210px; }
+    .thumbnail { min-height: 210px; border: 1px solid red; margin-bottom: 2px }
     .pad-left { margin-left: 10px; }
     .well div { color: #bbb; }
+    img { height: 50px;  }
   `]
 })
 export class EventThumbnailComponent {
