@@ -1,9 +1,10 @@
 import { Component, Input } from '@angular/core'
+import { NotificationService } from '../common/notification.service';
 
 @Component({
   selector: 'event-thumbnail',
   template: `
-    <div [routerLink]="['/events', event.id]" class="well hoverwell thumbnail">
+    <div (click)="showHtmlToaster()" [routerLink]="['/events', event.id]" class="well hoverwell thumbnail">
       <img [src]="event?.imageUrl" [alt]="event?.name" class="event-image">
       <h2>{{event?.name}}</h2>
       <div>Date: {{event?.date}}</div>
@@ -32,9 +33,15 @@ import { Component, Input } from '@angular/core'
 export class EventThumbnailComponent {
   @Input() event:any
 
+  constructor( private notifyService: NotificationService) {}
+
   getStartTimeStyle():any {
     if (this.event && this.event.time === '8:00 am')
       return {color: '#003300', 'font-weight': 'bold'}
     return {}
+  }
+
+  showHtmlToaster(){
+    this.notifyService.showHTMLMessage(this.event.name, "Thank You For Choosing")
   }
 } 

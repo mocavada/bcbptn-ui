@@ -12,7 +12,7 @@ import { NgbSlideEvent, NgbSlideEventSource } from '@ng-bootstrap/ng-bootstrap';
  <ngb-carousel (slide)="slideActivate($event)"
 [showNavigationArrows]="true" 
 [showNavigationIndicators]="true"
-[interval]="1000"
+[interval]="12000"
 [keyboard]="true"
 [pauseOnHover]="true"
 [wrap]="true"

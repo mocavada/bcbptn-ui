@@ -7,22 +7,30 @@ import { ActivatedRoute } from '@angular/router'
   template: `
   <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Logo</a>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav">
-                <li class="nav-item"><a class="nav-link" href="newPage.html">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-            </ul>
-        </div>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <a class="navbar-brand" href="#">True North</a>
+        <ul class="navbar-nav">
+          <li>
+            <a [routerLink]="['/events']" routerLinkActive="active" 
+            [routerLinkActiveOptions]="{exact:true}">All Events</a>
+          </li>
+          <li>
+            <a [routerLink]="['/events/new']" routerLinkActive="active">Create Event</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Events<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                  <li><a href="">Angular Connect</a></li>
+              </ul>
+          </li>
+        </ul>
+      </div>
     </nav>
   </header>
 `,
   styles: [`
-    // .navbar { margin-bottom: 50px; height: 40px; display: block; width: 100% }
-    // nav.navbar-nav {font-size: 75px;}
-    // #searchForm {margin-right: 100px;}
-    // li > a.active { color: #F97924; }
+    .navbar { display: block; ; padding-bottom: 50px; margin-bottom: 50px; height: 40px; width: 100% }
+    li { padding: 0 10px 0 10px }
+    li > a.active { color: #F97924; }
     
   `]
 })
