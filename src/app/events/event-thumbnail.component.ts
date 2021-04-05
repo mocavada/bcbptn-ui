@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core'
 import { NotificationService } from '../common/notification.service';
+import { IEvent } from './shared/index'
 
 
 @Component({
@@ -47,7 +48,8 @@ import { NotificationService } from '../common/notification.service';
   `],
 })
 export class EventThumbnailComponent {
-  @Input() event:any
+  @Input()
+  event!: IEvent;
 
   constructor( private notifyService: NotificationService) {}
 

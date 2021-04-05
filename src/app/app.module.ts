@@ -4,6 +4,7 @@ import { RouterModule, ActivatedRouteSnapshot } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 
 
 import {
@@ -22,7 +23,9 @@ import {
   EventDetailsComponent,
   CreateEventComponent,
   EventRouteActivator,
-  EventListResolver
+  EventListResolver,
+  CreateSessionComponent,
+  
 } from './events/index'
 
 import { EventsAppComponent } from './events-app.component';
@@ -31,6 +34,7 @@ import { Error404Component } from './errors/404.component';
 
 import { appRoutes } from './app-routing.module';
 import { LoginComponent } from './user/login.component';
+import { AuthService } from './user/auth.service'
 
 
 
@@ -38,8 +42,10 @@ import { LoginComponent } from './user/login.component';
   imports: [
     BrowserModule,
     RouterModule.forRoot(appRoutes),
-    NgbModule,
+    FormsModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
+    NgbModule,
     ToastrModule.forRoot()
   ],
   exports: [
@@ -50,6 +56,7 @@ import { LoginComponent } from './user/login.component';
     EventsListComponent,
     EventThumbnailComponent,
     EventDetailsComponent,
+    CreateSessionComponent,
     NavBarComponent,
     CreateEventComponent,
     Error404Component,
@@ -60,6 +67,7 @@ import { LoginComponent } from './user/login.component';
     EventService,  
     EventRouteActivator,
     EventListResolver,
+    AuthService,
     { 
       provide: 'canDeactivateCreateEvent', 
       useValue: checkDirtyState 
