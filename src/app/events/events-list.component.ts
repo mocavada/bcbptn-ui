@@ -4,7 +4,9 @@ import { ActivatedRoute } from '@angular/router';
 
 @Component({
  template: `
-  <carousel-main></carousel-main>
+  <!-- <carousel-main></carousel-main> -->
+
+
   <h1>Upcoming Angular Events</h1>
   <div class="row">
         <div *ngFor="let event of events" class="col-6">

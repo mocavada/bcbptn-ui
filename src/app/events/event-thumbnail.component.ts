@@ -1,12 +1,28 @@
 import { Component, Input } from '@angular/core'
 import { NotificationService } from '../common/notification.service';
 
+
 @Component({
   selector: 'event-thumbnail',
   template: `
+   <collapsible-well>
+    <div wells-title>
+      {{event.name}}
+      <i *ngIf="2 === 2" class="glyphicon glyphicon-envelope" style="color:red"></i>
+    </div>
+    <div wells-body>
+      <h3>{{event.onlineUrl}}</h3>
+      <h6>{{event.date}}</h6>
+      <p>{{event.price}}</p>
+   </div>
+   </collapsible-well> 
     <div (click)="showHtmlToaster()" [routerLink]="['/events', event.id]" class="well hoverwell thumbnail">
-      <img [src]="event?.imageUrl" [alt]="event?.name" class="event-image">
+    
+    <img [src]="event?.imageUrl" [alt]="event?.name" class="event-image">
       <h2>{{event?.name}}</h2>
+      <i class="fas fa-user"></i> <!-- uses solid style -->
+      <i class="fab fa-github-square"></i> <!-- uses brand style -->
+ 
       <div>Date: {{event?.date}}</div>
       <div [ngStyle]="getStartTimeStyle()" [ngSwitch]="event?.time">Time: {{event?.time}}
         <span *ngSwitchCase="'8:00 am'">(Early Start)</span>
@@ -28,7 +44,7 @@ import { NotificationService } from '../common/notification.service';
     .pad-left { margin-left: 10px; }
     .well div { color: #bbb; }
     img { height: 50px;  }
-  `]
+  `],
 })
 export class EventThumbnailComponent {
   @Input() event:any

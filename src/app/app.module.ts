@@ -1,9 +1,19 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, ActivatedRouteSnapshot } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
+import {
+  JQ_TOKEN
+} from './common/index'
+
+import {
+  CollapsibleWellComponent
+} from './common/ui/index'
+
 
 import {
   EventsListComponent,
@@ -14,13 +24,15 @@ import {
   EventRouteActivator,
   EventListResolver
 } from './events/index'
+
 import { EventsAppComponent } from './events-app.component';
-import { NavBarComponent } from './ui-components/nav-bar.component';
-import { CarouselComponent } from './ui-components/carousel.component';
+import { NavBarComponent } from './navbar/nav-bar.component';
 import { Error404Component } from './errors/404.component';
 
 import { appRoutes } from './app-routing.module';
 import { LoginComponent } from './user/login.component';
+
+
 
 @NgModule({
   imports: [
@@ -30,15 +42,19 @@ import { LoginComponent } from './user/login.component';
     BrowserAnimationsModule,
     ToastrModule.forRoot()
   ],
+  exports: [
+   
+  ],
   declarations: [	
     EventsAppComponent,
     EventsListComponent,
     EventThumbnailComponent,
     EventDetailsComponent,
     NavBarComponent,
-    CarouselComponent,
     CreateEventComponent,
-    Error404Component
+    Error404Component,
+    CollapsibleWellComponent,
+    
    ],
   providers: [
     EventService,  
@@ -49,9 +65,11 @@ import { LoginComponent } from './user/login.component';
       useValue: checkDirtyState 
     }
   ],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   bootstrap: [EventsAppComponent]
 })
 export class AppModule {}
+
 
 function checkDirtyState(component:CreateEventComponent) {
   if (component.isDirty)
