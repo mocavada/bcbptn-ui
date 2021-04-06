@@ -4,7 +4,14 @@ import { ISession, restrictedWords } from '../shared/index'
 
 @Component({
   templateUrl: './create-session.component.html',
-
+  styles: [`
+  em {float:right; color:#E05C65; padding-left: 10px;}
+  .error input {background-color:#E3C3C5;}
+  .error ::-webkit-input-placeholder { color: #999; }
+  .error ::-moz-placeholder { color: #999; }
+  .error :-moz-placeholder { color:#999; }
+  .error :ms-input-placeholder { color: #999; }
+`]
 })
 export class CreateSessionComponent implements OnInit {
   newSessionForm!: FormGroup
@@ -19,7 +26,7 @@ export class CreateSessionComponent implements OnInit {
     this.presenter = new FormControl('', Validators.required)
     this.duration = new FormControl('', Validators.required)
     this.level = new FormControl('', Validators.required)
-    this.abstract = new FormControl('', [Validators.required, Validators.maxLength(400), restrictedWords(['foo', 'bar'])])
+    this.abstract = new FormControl('', [Validators.required, Validators.maxLength(400), this.restrictedWords(['foo','bar'])])
 
     this.newSessionForm = new FormGroup({
       name: this.name,
@@ -28,6 +35,19 @@ export class CreateSessionComponent implements OnInit {
       level: this.level,
       abstract: this.abstract
     })
+  }
+
+  //fucntion returns a function
+  private restrictedWords(words: any) {
+    return (control: FormControl) : {[key: string]:any} => {
+
+      if (!words) return null as any
+
+      var invalidWords = words.map((w: any) => control.value.includes(w) ? w : null).filter((w: null) => w != null)
+      return invalidWords && invalidWords.length > 0
+      ? {'restrictedWords':invalidWords.join(', ')}
+      : null as any
+    }
   }
 
   saveSession(formValues: { name: any; duration: string | number; level: any; presenter: any; abstract: any }) {
