@@ -1,4 +1,4 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, ActivatedRouteSnapshot } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -6,15 +6,10 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 
-
 import {
-  JQ_TOKEN
-} from './common/index'
-
-import {
+  JQ_TOKEN,
   CollapsibleWellComponent
-} from './common/ui/index'
-
+} from './common/index'
 
 import {
   EventsListComponent,
@@ -25,6 +20,7 @@ import {
   EventRouteActivator,
   EventListResolver,
   CreateSessionComponent,
+  SessionListComponent
   
 } from './events/index'
 
@@ -33,9 +29,7 @@ import { NavBarComponent } from './navbar/nav-bar.component';
 import { Error404Component } from './errors/404.component';
 
 import { appRoutes } from './app-routing.module';
-import { LoginComponent } from './user/login.component';
 import { AuthService } from './user/auth.service'
-
 
 
 @NgModule({
@@ -61,7 +55,7 @@ import { AuthService } from './user/auth.service'
     CreateEventComponent,
     Error404Component,
     CollapsibleWellComponent,
-    
+    SessionListComponent
    ],
   providers: [
     EventService,  
@@ -73,7 +67,6 @@ import { AuthService } from './user/auth.service'
       useValue: checkDirtyState 
     }
   ],
-  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   bootstrap: [EventsAppComponent]
 })
 export class AppModule {}
